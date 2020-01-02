@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import kt.springboot.currency.calculation.service.bean.CurrencyCalculation;
 
 //@FeignClient(name="currency-exchange-service",url="localhost:8000")
-@FeignClient(name="currency-exchange-service")
+//@FeignClient(name="currency-exchange-service")
 @RibbonClient(name="currency-exchange-service")
+@FeignClient(name="kt-netflix-zuul-api-gateway-server")
+
 public interface CurrencyExchangeServiceProxy {
 	///currency-exchnage/from/{from}/to/{to}
-	@GetMapping("/currency-exchnage/from/{from}/to/{to}")
+	//@GetMapping("/currency-exchnage/from/{from}/to/{to}")
+	@GetMapping("/currency-exchange-service/currency-exchnage/from/{from}/to/{to}")
 	public CurrencyCalculation retrieveExchangeValue(@PathVariable String  from ,@PathVariable String to);
 }
